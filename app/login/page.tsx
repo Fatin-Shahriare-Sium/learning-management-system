@@ -3,6 +3,7 @@ import InputBox from "@/components/inputBox";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie";
 const LoginPage = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const notifyError = () =>
@@ -16,9 +17,30 @@ const LoginPage = () => {
       progress: undefined,
       theme: "light",
     });
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (loginData.email == "" || loginData.password == "") {
       notifyError();
+    } else {
+      let data = {
+        identifier: loginData.email,
+        password: loginData.password,
+      };
+
+      let res = await fetch(`${process.env.NEXT_PUBLIC_starpi_url}/auth/local`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      let result = await res.json();
+      if (result?.jwt) {
+        Cookies.set("token", result.jwt, { secure: true, expires: 365 });
+
+        toast("Successfully,login");
+      } else {
+        toast(result.error.message);
+      }
     }
   };
   return (

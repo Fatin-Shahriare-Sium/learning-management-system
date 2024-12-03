@@ -1,0 +1,15 @@
+.homeNavbar_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  background-color: pink;
+}
+.homeNavbar_wrapper-tabs {
+  display: flex;
+  background-color: aqua;
+  p {
+    padding: 2rem;
+  }
+}

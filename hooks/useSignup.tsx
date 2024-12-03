@@ -1,5 +1,4 @@
-import { error, log } from "console";
-
+import Cookies from "js-cookie";
 const UseSignUp = async ({ username, nickename, email, password }: { username: string; nickename: string; email: string; password: string }) => {
   const userData = {
     username: username,
@@ -16,6 +15,7 @@ const UseSignUp = async ({ username, nickename, email, password }: { username: s
   let res = await data.json();
   console.log(res.data);
   if (res?.jwt) {
+    Cookies.set("token", res.jwt, { secure: true, expires: 365 });
     return {
       color: "green",
       message: "Successfully,created an account for you",

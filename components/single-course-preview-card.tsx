@@ -5,7 +5,7 @@ const SingleCoursePreviewCard = ({ courseName, courseThumbnail, coursePrice, cou
   console.log(`${process.env.NEXT_PUBLIC_starpi_url_media}${courseThumbnail}`);
   console.log("single_coursesname", courseName);
   return (
-    <div style={{ height: "60vh", width: "25vw", backgroundColor: "#222323", margin: "1% 2%" }} className="SingleCoursePreviewCard_wrapper">
+    <div style={{ height: "max-content", width: "25vw", backgroundColor: "#222323", margin: "1% 2%" }} className="SingleCoursePreviewCard_wrapper">
       <div className="SingleCoursePreviewCard_wrapper-img">
         <Image style={{ width: "100%", height: "100%", objectFit: "contain" }} height={500} width={500} alt="good" src={`${process.env.NEXT_PUBLIC_starpi_url_media}/${courseThumbnail}`} />
       </div>

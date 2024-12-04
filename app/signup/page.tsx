@@ -4,6 +4,7 @@ import UseSignUp from "@/hooks/useSignup";
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const SignUp = () => {
   let [newUser, setNewUser] = useState({ username: "", nickname: "", email: "", password: "", conPassword: "" });
   const notifyError = () =>

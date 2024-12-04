@@ -3,7 +3,7 @@ interface inputBox {
   title: string;
   placeholder: string;
   type: string;
-  handleInputBox: (any) => any;
+  handleInputBox: () => any;
 }
 const InputBox = ({ title, placeholder, type, handleInputBox }: inputBox) => {
   return (

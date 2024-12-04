@@ -12,6 +12,9 @@ const HomeNavbar = () => {
           <Link href={"/"}>
             <p>Home</p>
           </Link>
+          <Link href={"/course"}>
+            <p>Courses</p>
+          </Link>
           <Link href={""}>
             <p>About</p>
           </Link>

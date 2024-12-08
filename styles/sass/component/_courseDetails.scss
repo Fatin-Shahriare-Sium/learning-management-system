@@ -37,5 +37,6 @@
 }
 .course-details__description {
   background-color: #181313;
+  overflow: hidden;
 }
 //@include media-breakpoint-down("");

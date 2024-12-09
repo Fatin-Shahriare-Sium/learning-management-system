@@ -3,12 +3,12 @@
 .course-details__header {
   width: 100%;
   margin-top: 1%;
-  height: 40vh;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   justify-content: space-around;
   align-items: center;
-  > div,
+  margin: 2% 0%;
+
   .course-details__header-course-metadata {
     display: flex;
     justify-content: space-around;
@@ -34,9 +34,22 @@
 }
 .course-details__body {
   display: flex;
+  gap: 1rem;
 }
 .course-details__description {
   background-color: #181313;
-  overflow: hidden;
 }
-//@include media-breakpoint-down("");
+.course-details__body-lessons {
+  background-color: var(--section-color);
+  margin-top: 2%;
+  padding: 2rem;
+}
+
+@include media-breakpoint-down("sm") {
+  .course-details__body {
+    display: block;
+  }
+  .course-details__body-left-column {
+    width: 100% !important;
+  }
+}

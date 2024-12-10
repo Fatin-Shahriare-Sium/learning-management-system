@@ -1,5 +1,6 @@
 "use client";
 import InputBox from "@/components/inputBox";
+import { useAppProvider } from "@/context/appProvider";
 import UseSignUp from "@/hooks/useSignup";
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -7,6 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   let [newUser, setNewUser] = useState({ username: "", nickname: "", email: "", password: "", conPassword: "" });
+  const { isLogin } = useAppProvider();
+  let tk = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTczMzI0OTIxNSwiZXhwIjoxNzM1ODQxMjE1fQ.DBW-wDLJVnXwQgqKG9rwev-qoPqqa2FwHJpMhFJY8wgZy23E";
+  let mainTokenLength = 139;
+
+  console.log("token tk", tk.slice(0, 139));
+
   const notifyError = () =>
     toast("Please,fill the fields", {
       position: "top-center",
@@ -39,6 +46,7 @@ const SignUp = () => {
   };
   useEffect(() => {
     console.log(newUser);
+    console.log("islogin", isLogin);
   }, [newUser]);
   return (
     <div style={{ width: "100%" }} className="signup-wrapper">

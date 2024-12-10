@@ -6,6 +6,7 @@ import CustomCollapse from "@/components/collapse";
 import Player from "next-video/player";
 import SingleCourseLessonCollapse from "@/components/single-course-lession-collapse";
 import VideoPlayer from "@/components/videoPlayer";
+
 const SingleCourse = async ({ params }) => {
   let { courseId } = await params;
   let res = await fetch(`${process.env.NEXT_PUBLIC_starpi_url}/single-courses?filters[documentId][$eqi]=${courseId}&populate[course_thumbnail][populate]=*&populate[course_lessons][populate]=lesson_assets`, {

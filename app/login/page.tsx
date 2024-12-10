@@ -35,7 +35,10 @@ const LoginPage = () => {
       });
       let result = await res.json();
       if (result?.jwt) {
-        Cookies.set("token", result.jwt, { secure: true, expires: 365 });
+        const token_length = result.jwt.length;
+        Cookies.set("token_length", token_length, { expires: 365 });
+        Cookies.set("realToken", result.jwt, { expires: 365 });
+        Cookies.set("token", `${result.jwt}Z1dx-1E`, { secure: true, expires: 365 });
 
         toast("Successfully,login");
       } else {

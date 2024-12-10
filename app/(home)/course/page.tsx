@@ -1,7 +1,9 @@
 import SingleCoursePreviewCard from "@/components/single-course-preview-card";
-import React from "react";
+import { NextRequest, NextResponse } from "next/server";
 
 const CoursePage = async () => {
+  console.log("NextRequest", NextRequest);
+
   console.log("process.env.NEXT_PUBLIC_starpi_url_media", process.env.NEXT_PUBLIC_starpi_url_media);
 
   let res = await fetch(`${process.env.NEXT_PUBLIC_starpi_url}/all-courses?populate[single_courses][populate]=*`, {

@@ -15,7 +15,10 @@ const UseSignUp = async ({ username, nickename, email, password }: { username: s
   let res = await data.json();
   console.log(res.data);
   if (res?.jwt) {
-    Cookies.set("token", res.jwt, { secure: true, expires: 365 });
+    const token_length = res.jwt.length;
+    Cookies.set("token_length", token_length, { expires: 365 });
+    Cookies.set("realToken", res.jwt, { expires: 365 });
+    Cookies.set("token", `${res.jwt}Z1dx-1E`, { secure: true, expires: 365 });
     return {
       color: "green",
       message: "Successfully,created an account for you",

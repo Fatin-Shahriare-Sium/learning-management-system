@@ -1,7 +1,12 @@
+"use client";
 import Link from "next/link";
 import React from "react";
+import Test from "../assets/test.jpg";
+import Avatar from "./avatar";
+import { useAppProvider } from "@/context/appProvider";
 
 const HomeNavbar = () => {
+  let { isLogin } = useAppProvider();
   return (
     <div>
       <div className="homeNavbar_wrapper">
@@ -18,12 +23,21 @@ const HomeNavbar = () => {
           <Link href={""}>
             <p>About</p>
           </Link>
-          <Link href={"/login"}>
-            <p>Login</p>
-          </Link>
-          <Link href={"/signup"}>
-            <p>Register</p>
-          </Link>
+
+          {isLogin ? (
+            <Link href={"/dashboard"}>
+              <Avatar />
+            </Link>
+          ) : (
+            <>
+              <Link href={"/login"}>
+                <p>Login</p>
+              </Link>
+              <Link href={"/signup"}>
+                <p>Register</p>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -34,12 +34,18 @@ const LoginPage = () => {
         body: JSON.stringify(data),
       });
       let result = await res.json();
+      let userInfo = {
+        documentId: result.user.documentId,
+        email: result.user.email,
+        username: result.user.username,
+      };
       if (result?.jwt) {
         const token_length = result.jwt.length;
         Cookies.set("token_length", token_length, { expires: 365 });
         Cookies.set("realToken", result.jwt, { expires: 365 });
         Cookies.set("token", `${result.jwt}Z1dx-1E`, { secure: true, expires: 365 });
-
+        console.log("result in login", result);
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
         toast("Successfully,login");
       } else {
         toast(result.error.message);

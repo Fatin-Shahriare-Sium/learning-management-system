@@ -9,7 +9,19 @@
 .homeNavbar_wrapper-tabs {
   display: flex;
   background-color: aqua;
+  align-items: center;
   p {
     padding: 2rem;
+  }
+}
+
+//avatar component
+.avatar-wrapper {
+  position: relative;
+  div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

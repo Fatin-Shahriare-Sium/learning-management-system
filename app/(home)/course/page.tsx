@@ -19,7 +19,7 @@ const CoursePage = async () => {
     <div className="course-page_wrapper">
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", width: "90%", margin: "auto" }}>
         {allCoursesRes.data[0].single_courses.map((sig, i) => {
-          return <SingleCoursePreviewCard key={i} coursePrice={sig.course_price} courseRating={sig.course_rating} courseName={sig.course_name} courseThumbnail={sig.course_thumbnail.url} />;
+          return <SingleCoursePreviewCard key={i} documentID={sig.documentId} coursePrice={sig.course_price} courseRating={sig.course_rating} courseName={sig.course_name} courseThumbnail={sig.course_thumbnail.url} />;
         })}
         {/* <SingleCoursePreviewCard />
         <SingleCoursePreviewCard />

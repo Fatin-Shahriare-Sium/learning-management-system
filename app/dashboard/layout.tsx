@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { ReactNode, useEffect, useState } from "react";
 import MenuIcon from "../../assets/menuIcon.png";
+import Link from "next/link";
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   let { isLogin } = useAppProvider();
   const router = useRouter();
@@ -29,15 +30,19 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         style={{
           width: isSidebarOpen ? "250px" : "0",
           transition: "width 0.3s",
-          overflow: "hidden",
           padding: isSidebarOpen ? "20px" : "0",
           boxSizing: "border-box",
         }}
       >
         {isSidebarOpen && (
           <div className="dashboard-sidebar__tabs">
-            <p>Dashboard</p>
+            <Link href={"/dashboard/"}>
+              <p>Dashboard</p>
+            </Link>
             <p>Profile</p>
+            <Link href={"/dashboard/your-course"}>
+              <p>Courses</p>
+            </Link>
             <p>Settings</p>
             <p>Logout</p>
           </div>

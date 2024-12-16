@@ -1,7 +1,7 @@
 import Image from "next/image";
 import CustomBtn from "./customBtn";
 
-const SingleCoursePreviewCard = ({ courseName, courseThumbnail, coursePrice, courseRating }: { courseName: string; courseThumbnail: string; coursePrice: number; courseRating: number }) => {
+const SingleCoursePreviewCard = ({ courseName, courseThumbnail, coursePrice, courseRating, documentID }: { courseName: string; courseThumbnail: string; coursePrice: number; courseRating: number; documentID: string }) => {
   console.log(`${process.env.NEXT_PUBLIC_starpi_url_media}${courseThumbnail}`);
   console.log("single_coursesname", courseName);
   return (
@@ -16,8 +16,8 @@ const SingleCoursePreviewCard = ({ courseName, courseThumbnail, coursePrice, cou
           <p>{coursePrice}BDT</p>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "1%" }}>
-          <CustomBtn btnName="View" btnTextColor="green" btnColor="white" />
-          <CustomBtn btnName="Enroll" btnTextColor="white" btnColor="#3bb2de" />
+          <CustomBtn routerLink={`/course-view/${documentID}`} btnName="View" btnTextColor="green" btnColor="white" />
+          <CustomBtn routerLink="" btnName="Enroll" btnTextColor="white" btnColor="#3bb2de" />
         </div>
       </div>
     </div>

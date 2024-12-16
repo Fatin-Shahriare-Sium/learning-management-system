@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@strapi/blocks-react-renderer": "^1.0.1",
+    "@types/gapi": "^0.0.47",
+    "gapi-script": "^1.2.0",
     "husky": "^9.1.7",
     "js-cookie": "^3.0.5",
     "next": "15.0.3",
@@ -20,6 +22,7 @@
     "react-modal": "^3.16.1",
     "react-player": "^2.16.0",
     "react-toastify": "^10.0.6",
+    "react-youtube": "^10.1.0",
     "sass": "^1.81.1"
   },
   "devDependencies": {

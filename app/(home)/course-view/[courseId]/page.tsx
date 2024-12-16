@@ -6,10 +6,13 @@ import CustomCollapse from "@/components/collapse";
 import Player from "next-video/player";
 import SingleCourseLessonCollapse from "@/components/single-course-lession-collapse";
 import VideoPlayer from "@/components/videoPlayer";
+import { Checkout } from "@/components/bekash";
+import BuyBtn from "@/components/buyBtn";
 
 const SingleCourse = async ({ params }) => {
   let { courseId } = await params;
-  let res = await fetch(`${process.env.NEXT_PUBLIC_starpi_url}/single-courses?filters[documentId][$eqi]=${courseId}&populate[course_thumbnail][populate]=*&populate[course_lessons][populate]=lesson_assets`, {
+
+  let res = await fetch(`${process.env.NEXT_PUBLIC_starpi_url}/single-courses?filters[documentId][$eqi]=${courseId}&populate[course_thumbnail][populate]=*&populate[course_lessons][populate]=lesson_assets&populate=enrolledUsers`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_strapi_api_token}`,
@@ -17,8 +20,9 @@ const SingleCourse = async ({ params }) => {
   });
 
   let singleCouseRes = await res.json();
-  console.log("singleCouseRes data", singleCouseRes.data[0].course_introVideo);
+  console.log("singleCouseRes data", singleCouseRes.data[0].enrolledUsers);
   const content: BlocksContent = singleCouseRes.data[0].course_description;
+
   return (
     <div style={{ width: "90%", margin: "auto" }} className="course-details__wrapper">
       <div className="course-details__header">
@@ -52,6 +56,10 @@ const SingleCourse = async ({ params }) => {
         </div>
         <div className="course-details__body-right-column">
           <VideoPlayer url={singleCouseRes.data[0].course_introVideo} />
+          <div>
+            {/* <Checkout /> */}
+            <BuyBtn courseId={courseId} enrolledUsersArray={singleCouseRes.data[0].enrolledUsers}></BuyBtn>
+          </div>
         </div>
       </div>
     </div>

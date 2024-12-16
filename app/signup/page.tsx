@@ -9,10 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 const SignUp = () => {
   let [newUser, setNewUser] = useState({ username: "", nickname: "", email: "", password: "", conPassword: "" });
   const { isLogin } = useAppProvider();
-  let tk = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTczMzI0OTIxNSwiZXhwIjoxNzM1ODQxMjE1fQ.DBW-wDLJVnXwQgqKG9rwev-qoPqqa2FwHJpMhFJY8wgZy23E";
-  let mainTokenLength = 139;
 
-  console.log("token tk", tk.slice(0, 139));
 
   const notifyError = () =>
     toast("Please,fill the fields", {

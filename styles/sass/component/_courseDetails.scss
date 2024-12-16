@@ -44,7 +44,10 @@
   margin-top: 2%;
   padding: 2rem;
 }
-
+.course-details__body-right-column {
+  display: flex;
+  flex-direction: column;
+}
 @include media-breakpoint-down("sm") {
   .course-details__body {
     display: block;

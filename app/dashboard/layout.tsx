@@ -6,6 +6,7 @@ import React, { ReactNode, useEffect, useState } from "react";
 import MenuIcon from "../../assets/menuIcon.png";
 import Link from "next/link";
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
+  let userInfo = JSON.parse(localStorage.getItem("userInfo"));
   let { isLogin } = useAppProvider();
   const router = useRouter();
   if (!isLogin) {
@@ -40,7 +41,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
               <p>Dashboard</p>
             </Link>
             <p>Profile</p>
-            <Link href={"/dashboard/your-course"}>
+            <Link href={`/dashboard/your-course/`}>
               <p>Courses</p>
             </Link>
             <p>Settings</p>

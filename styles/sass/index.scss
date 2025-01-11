@@ -69,3 +69,13 @@ html {
     width: max-content !important;
   }
 }
+
+@include media-breakpoint-down("md") {
+  .dashboard-course-container {
+    flex-direction: column !important;
+  }
+  .dashboard-course-container > div {
+    flex: 1 !important;
+    //display: none !important;
+  }
+}

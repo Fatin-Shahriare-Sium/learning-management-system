@@ -40,7 +40,9 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
             <Link href={"/dashboard/"}>
               <p>Dashboard</p>
             </Link>
-            <p>Profile</p>
+            <Link href={"/dashboard/profile"}>
+              <p>Profile</p>
+            </Link>
             <Link href={`/dashboard/your-course/`}>
               <p>Courses</p>
             </Link>

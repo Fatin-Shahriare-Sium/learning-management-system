@@ -12,7 +12,7 @@ const EnrolledCoursePreviewCard = ({ id, name, author, img }: { id: string; name
         <p>{author}</p>
       </div>
       <div>
-        <CustomBtn routerLink={`/dashboard/your-course/${id}`} btnName="📼 Watch" btnColor="white" btnTextColor="black" />
+        <CustomBtn routerLink={`/dashboard/your-course/coursePlayer?courseId=${id}`} btnName="📼 Watch" btnColor="white" btnTextColor="black" />
       </div>
     </div>
   );

@@ -46,7 +46,12 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
             <Link href={`/dashboard/your-course/`}>
               <p>Courses</p>
             </Link>
-            <p>Settings</p>
+            <Link href={"/dashboard/purchase-history"}>
+              <p>Purchase History</p>
+            </Link>
+            <Link href={"/dashboard/change-password"}>
+              <p>Change Password</p>
+            </Link>
             <p>Logout</p>
           </div>
         )}

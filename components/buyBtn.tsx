@@ -17,6 +17,7 @@ const BuyBtn = ({ courseId, enrolledUsersArray }: { courseId: string; enrolledUs
         "Content-Type": "application/json",
       },
     });
+
     let x = await data.json();
     console.log(x);
   };

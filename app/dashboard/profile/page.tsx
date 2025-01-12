@@ -1,4 +1,5 @@
 "use client";
+import InputBox from "@/components/inputBox";
 import React, { useState } from "react";
 
 const ProfileEditor = () => {
@@ -11,9 +12,11 @@ const ProfileEditor = () => {
   const [preview, setPreview] = useState(null);
   const [message, setMessage] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const handleChangeName = (value) => {
+    setFormData({ ...formData, name: value });
+  };
+  const handleChangePhone = (value) => {
+    setFormData({ ...formData, phone: value });
   };
 
   const handleFileChange = (e) => {
@@ -51,24 +54,18 @@ const ProfileEditor = () => {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "0 auto" }}>
+    <div style={{ maxWidth: "400px", margin: "0 auto", color: "white" }}>
       <h2>Edit Profile</h2>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "1rem" }}>
-          <label>
-            Name:
-            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-          </label>
+          <InputBox title="Name" placeholder="your name" type="text" handleInputBox={handleChangeName} />
         </div>
         <div style={{ marginBottom: "1rem" }}>
-          <label>
-            Phone Number:
-            <input type="tel" name="phone" value={formData.phone} onChange={handleChange} pattern="^\+?\d{10,15}$" title="Enter a valid phone number (10-15 digits)" required />
-          </label>
+          <InputBox title="Phone Number" placeholder="number" type="number" handleInputBox={handleChangePhone} />
         </div>
         <div style={{ marginBottom: "1rem" }}>
-          <label>
+          <label style={{ fontSize: "2rem" }}>
             Profile Picture:
             <input type="file" accept="image/*" onChange={handleFileChange} />
           </label>

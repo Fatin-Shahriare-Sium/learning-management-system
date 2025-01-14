@@ -1,7 +1,11 @@
 import React from "react";
 
 const ChangePassPage = () => {
-  return <div>ChangePassPage</div>;
+  return (
+    <div>
+      <div></div>
+    </div>
+  );
 };
 
 export default ChangePassPage;

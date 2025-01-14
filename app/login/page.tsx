@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
+import Link from "next/link";
 const LoginPage = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const notifyError = () =>
@@ -53,11 +54,18 @@ const LoginPage = () => {
     }
   };
   return (
-    <div>
-      <ToastContainer style={{ fontSize: "2rem" }} />
-      <InputBox handleInputBox={(value) => setLoginData({ ...loginData, email: value })} title="Email" placeholder="Email" type="email" />
-      <InputBox handleInputBox={(value) => setLoginData({ ...loginData, password: value })} title="Password" placeholder="Password" type="password" />
-      <button onClick={handleLogin}>Login</button>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      <div style={{ minWidth: "300px", width: "70vw" }}>
+        <ToastContainer style={{ fontSize: "2rem" }} />
+        <InputBox handleInputBox={(value) => setLoginData({ ...loginData, email: value })} title="Email" placeholder="Email" type="email" />
+        <InputBox handleInputBox={(value) => setLoginData({ ...loginData, password: value })} title="Password" placeholder="Password" type="password" />
+        <Link href={"/forget-password"}>
+          <p style={{ color: "yellow", textDecoration: "underline", fontSize: "1rem" }}>Forget Password?</p>
+        </Link>
+        <button style={{ padding: ".5rem 2rem ", marginTop: "2%" }} onClick={handleLogin}>
+          Login
+        </button>
+      </div>
     </div>
   );
 };

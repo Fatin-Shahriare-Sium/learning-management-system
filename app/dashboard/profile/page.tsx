@@ -99,7 +99,7 @@ const ProfileEditor = () => {
       } else {
         setMessage("Failed to update profile. Please try again.");
       }
-    } catch (error) {
+    } catch {
       setMessage("An error occurred. Please try again.");
     }
   };

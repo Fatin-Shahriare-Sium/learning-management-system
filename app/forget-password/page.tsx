@@ -1,8 +1,11 @@
 "use client";
+
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const ForgetPassword = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [step, setStep] = useState(1); // 1: Email Input, 2: OTP Verification, 3: Reset Password
   const [otp, setOtp] = useState("");
@@ -58,21 +61,68 @@ const ForgetPassword = () => {
       // Verify OTP via API
       let res = await fetch(`${process.env.NEXT_PUBLIC_starpi_url}/otps/verify?OTPdocumentId=${otpId}&OTPcode=${otp}`);
       let afterVerify = await res.json();
+      if (afterVerify.verifiedOTP == true) {
+        setStep(3);
+        return toast("OTP has been matched 🎉", {
+          position: "top-center",
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          type: "success",
+          theme: "light",
+        });
+      } else {
+        return toast("Try Again 😔", {
+          position: "top-center",
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          type: "error",
+          theme: "light",
+        });
+      }
       console.log(`Verifying OTP: ${otp}`, afterVerify);
-      setStep(3);
     }
   };
 
-  const handleResetPassword = () => {
+  const handleResetPassword = async () => {
     if (newPassword && newPassword === confirmPassword) {
       // Trigger API to reset the password
-      console.log("Password reset successfully");
-      alert("Password reset successfully!");
-      setStep(1);
-      setEmail("");
-      setOtp("");
-      setNewPassword("");
-      setConfirmPassword("");
+      const formDataOfForgetPassword = new FormData();
+      formDataOfForgetPassword.append("userEmail", email);
+      formDataOfForgetPassword.append("newPassword", newPassword);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_starpi_url}/user/forget-password`, {
+        method: "POST",
+        body: formDataOfForgetPassword,
+      });
+      const data = await res.json();
+      if (data.isPasswordReset == true) {
+        toast("Your password has been reset 🎉", {
+          position: "top-center",
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          type: "success",
+          theme: "light",
+        });
+
+        alert("Password reset successfully!");
+        router.push("/login");
+        setStep(1);
+        setEmail("");
+        setOtp("");
+        setNewPassword("");
+        setConfirmPassword("");
+      } else {
+        toast("TRY AGAIN", {
+          position: "top-center",
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          type: "error",
+          theme: "light",
+        });
+      }
     } else {
       alert("Passwords do not match");
     }

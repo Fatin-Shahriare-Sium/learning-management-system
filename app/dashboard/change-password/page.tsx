@@ -30,23 +30,24 @@ const ChangePassword = () => {
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
     } else {
-      const xyz = JSON.stringify({
+      const XObj = {
         currentPassword: oldPassword,
         password: password,
         passwordConfirmation: confirmPassword,
-      });
+      };
       const res = await fetch(`${process.env.NEXT_PUBLIC_starpi_url}/auth/change-password`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
-        body: xyz,
+        body: JSON.stringify(XObj),
       });
-      let changePassData = await res.json();
-      if (changePassData.data) {
+      const changePassData = await res.json();
+      if (changePassData?.jwt) {
         alert("Password successfully changed!");
       } else {
-        alert("Unable to update your password");
+        alert(`${changePassData.error.message}`);
       }
       console.log("after password change", changePassData);
 

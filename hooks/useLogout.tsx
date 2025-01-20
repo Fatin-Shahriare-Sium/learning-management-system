@@ -1,11 +1,10 @@
-import { useRouter } from "next/navigation";
-
+import { redirect } from "next/navigation";
+import Cookies from "js-cookie";
 export default function useLogout() {
-  let router = useRouter();
   const logout = async () => {
     await localStorage.removeItem("userInfo");
-    await localStorage.removeItem("tokenx");
-    router.push("/");
+    Cookies.remove("token");
+    redirect("/");
   };
 
   return { logout };

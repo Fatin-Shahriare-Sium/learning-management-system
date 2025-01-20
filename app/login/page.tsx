@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 const LoginPage = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const notifyError = () =>
@@ -49,6 +50,7 @@ const LoginPage = () => {
         console.log("result in login", result);
         localStorage.setItem("userInfo", JSON.stringify(userInfo));
         toast("Successfully,login");
+        redirect("/dashboard");
       } else {
         toast(result.error.message);
       }

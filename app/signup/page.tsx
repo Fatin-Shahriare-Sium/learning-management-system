@@ -2,6 +2,7 @@
 import InputBox from "@/components/inputBox";
 import { useAppProvider } from "@/context/appProvider";
 import UseSignUp from "@/hooks/useSignup";
+import { redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,7 +10,6 @@ import "react-toastify/dist/ReactToastify.css";
 const SignUp = () => {
   let [newUser, setNewUser] = useState({ username: "", nickname: "", email: "", password: "", conPassword: "" });
   const { isLogin } = useAppProvider();
-
 
   const notifyError = () =>
     toast("Please,fill the fields", {
@@ -39,6 +39,7 @@ const SignUp = () => {
     } else {
       let res = await UseSignUp({ username: newUser.username, nickename: newUser.nickname, email: newUser.email, password: newUser.password });
       toast(res.message);
+      redirect("/dashboard");
     }
   };
   useEffect(() => {

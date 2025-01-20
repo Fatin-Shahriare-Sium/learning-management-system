@@ -9,21 +9,13 @@ import useLogout from "@/hooks/useLogout";
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   let userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const { logout } = useLogout();
-  let { isLogin } = useAppProvider();
-  const router = useRouter();
-  if (!isLogin) {
-    router.push("/login");
-  }
+  const { isLogin } = useAppProvider();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
-  useEffect(() => {
-    console.log(isLogin);
-  }, []);
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>

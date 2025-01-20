@@ -1,12 +1,16 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import Test from "../assets/test.jpg";
 import Avatar from "./avatar";
 import { useAppProvider } from "@/context/appProvider";
 
 const HomeNavbar = () => {
   let { isLogin } = useAppProvider();
+  useEffect(() => {
+    console.log("is login", isLogin);
+  }, []);
+
   return (
     <div>
       <div className="homeNavbar_wrapper">

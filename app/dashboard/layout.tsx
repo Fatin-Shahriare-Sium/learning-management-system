@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation";
 import React, { ReactNode, useEffect, useState } from "react";
 import MenuIcon from "../../assets/menuIcon.png";
 import Link from "next/link";
+import useLogout from "@/hooks/useLogout";
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const { logout } = useLogout();
   let { isLogin } = useAppProvider();
   const router = useRouter();
   if (!isLogin) {
@@ -52,7 +54,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
             <Link href={"/dashboard/change-password"}>
               <p>Change Password</p>
             </Link>
-            <p>Logout</p>
+            <p onClick={() => logout()}>Logout</p>
           </div>
         )}
       </div>
